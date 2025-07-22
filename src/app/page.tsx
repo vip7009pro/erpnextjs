@@ -1,24 +1,8 @@
-'use client';
-
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-
-export default function RootPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    console.log('token',token)
-    if (token !== null || token !== undefined || token !== '') {
-      router.push('/home');
-    } else {
-      router.push('/login');
-    }
-  }, [router]);
-
+export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <p>Redirecting...</p>
+    <div>
+      <h1>Home Page</h1>
+      <p>Please <a href="/login">login</a> to access the dashboard.</p>
     </div>
   );
 }

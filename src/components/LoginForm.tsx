@@ -18,6 +18,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
       const response = await axios.post('/login', { email, password });
       const { token } = response.data;
       localStorage.setItem('token', token);
+      console.log('token',token)
       onSuccess();
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
