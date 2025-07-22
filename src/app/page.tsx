@@ -8,8 +8,8 @@ export default function RootPage() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
-    if (token) {
+    console.log('token',token)
+    if (token !== null || token !== undefined || token !== '') {
       router.push('/home');
     } else {
       router.push('/login');
