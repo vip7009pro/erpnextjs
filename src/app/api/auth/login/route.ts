@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import bcrypt from 'bcryptjs';
 import { cookies } from 'next/headers';
 
@@ -8,10 +8,9 @@ type LoginRequest = {
   password: string;
 };
 
-export async function POST(req: Request) {
+export async function POST(req: Request) { 
   const { email, password }: LoginRequest = await req.json();
 
-  // Giả lập user trong DB
   const user = {
     id: 1,
     email: 'admin@erpnext.com',
@@ -19,20 +18,22 @@ export async function POST(req: Request) {
   };
 
   if (email !== user.email || !(await bcrypt.compare(password, user.password))) {
+    console.log('Invalid credentials for:', email);
     return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
   }
 
-  const token = jwt.sign(
-    { userId: user.id, email: user.email },
-    process.env.JWT_SECRET as string,
-    { expiresIn: '1h' }
-  );
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const token = await new SignJWT({ userId: user.id, email: user.email })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setExpirationTime('1h')
+    .sign(secret);
 
+  console.log('Generated token for user:', email, 'Token:', token);
   (await cookies()).set('token', token, {
     httpOnly: true,
     maxAge: 3600,
     path: '/',
-    secure: process.env.NODE_ENV === 'production', // Chỉ secure trong production
+    secure: process.env.NODE_ENV === 'production',
   });
 
   return NextResponse.json({ message: 'Login successful' });
