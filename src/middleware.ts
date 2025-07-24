@@ -6,7 +6,9 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get('token')?.value;
   const { pathname } = req.nextUrl;
 
+
   console.log('Middleware triggered for:', pathname, 'Token:', token ? 'exists' : 'missing');
+
 
   if (pathname === '/') {
     if (!token) {
@@ -26,7 +28,7 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  if (pathname === '/dashboard' || pathname.startsWith('/dashboard/')) {
+  else if (pathname === '/dashboard' || pathname.startsWith('/dashboard/')) {
     if (!token) {
       console.log('No token for /dashboard, redirecting to /login');
       return NextResponse.redirect(new URL('/login', req.url));
@@ -44,7 +46,7 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  if(pathname === '/login'){
+  else if(pathname === '/login'){
     if(token){
       console.log('Token exists for /login, redirecting to /dashboard');
       return NextResponse.redirect(new URL('/dashboard', req.url));

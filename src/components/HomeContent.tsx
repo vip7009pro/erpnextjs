@@ -1,11 +1,14 @@
 'use client';
 
+import LayoutHome from "./LayoutHome";
+
 interface HomeContentProps {
   onLogout: () => void;
 }
 
 export default function HomeContent({ onLogout }: HomeContentProps) {
   return (
+    <LayoutHome>
     <>
       <h1 className="text-3xl font-bold mb-4">Welcome to Home Page</h1>
       <p className="mb-6">You are logged in!</p>
@@ -16,5 +19,6 @@ export default function HomeContent({ onLogout }: HomeContentProps) {
         Logout
       </button>
     </>
-  );
+    </LayoutHome>
+      );
 }
