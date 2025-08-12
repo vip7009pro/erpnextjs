@@ -1,3 +1,4 @@
+import * as XLSX from "xlsx";
 export async function encryptData(
     publicKey: string,
     data: object
@@ -78,3 +79,9 @@ export async function encryptData(
     }
     return btoa(binary);
   }
+  export const SaveExcel = (data: any, title: string) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, `${title}.xlsx`);
+  };

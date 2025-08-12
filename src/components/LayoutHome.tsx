@@ -4,8 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from './logout/LogoutButton';
 import { IoMdMenu } from 'react-icons/io';
-import { MdWarehouse, MdSell, MdLock, MdNotifications, MdInput, MdOutput, MdFormatQuote, MdShoppingCart, MdPassword, MdSecurity } from 'react-icons/md';
+import { MdWarehouse, MdSell, MdLock, MdNotifications, MdInput, MdOutput, MdFormatQuote, MdShoppingCart, MdPassword, MdSecurity, MdMenuBook, MdOutlineFormatAlignCenter } from 'react-icons/md';
 import { useSelector } from 'react-redux';
+import { FaDatabase } from 'react-icons/fa';
+import { DiMsqlServer } from 'react-icons/di';
+import { SiReactquery } from 'react-icons/si';
+import { TbCirclesRelation } from 'react-icons/tb';
+import { CgWebsite } from 'react-icons/cg';
 interface LayoutHomeProps {
   children: React.ReactNode;
 }
@@ -38,6 +43,20 @@ const menuItems = [
           { name: 'Đơn hàng', icon: <MdShoppingCart />, path: '/erp/sales/order' },
         ],
       },
+    ],
+  },
+  {
+    name: 'No Code - Low Code',
+    icon: <MdSell />,
+    path: '/nocodelowcode',
+    children: [
+      { name: 'DB Manager', icon: <FaDatabase color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/dbmanager' },
+      { name: 'SQL', icon: <DiMsqlServer color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/sql' },
+      { name: 'Query Manager', icon: <SiReactquery color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/querymanager' },
+      { name: 'Menu Manager', icon: <MdMenuBook color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/menumanager' },
+      { name: 'Form Manager', icon: <MdOutlineFormatAlignCenter color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/formmanager' },
+      { name: 'Relationship Manager', icon: <TbCirclesRelation color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/relationshipmanager' },
+      { name: 'Pages Manager', icon: <CgWebsite color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/pagesmanager' },     
     ],
   },
   {

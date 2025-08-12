@@ -1,0 +1,153 @@
+.agtable {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  .toolbar {
+    display: flex;
+    height: auto;
+    width: 100%;  
+    align-items: center;
+    background-color: #b2ffa0;
+    .css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+      padding: 0px;
+      padding-right: 10px;
+    }
+    flex-wrap: wrap;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+      height: 1px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888;
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+  }
+  .ag-theme-quartz input[class^=ag-]:not([type]),
+  .ag-theme-quartz input[class^=ag-][type=text],
+  .ag-theme-quartz input[class^=ag-][type=number],
+  .ag-theme-quartz input[class^=ag-][type=tel],
+  .ag-theme-quartz input[class^=ag-][type=date],
+  .ag-theme-quartz input[class^=ag-][type=datetime-local],
+  .ag-theme-quartz textarea[class^=ag-],
+  .ag-theme-quartz-dark input[class^=ag-]:not([type]),
+  .ag-theme-quartz-dark input[class^=ag-][type=text],
+  .ag-theme-quartz-dark input[class^=ag-][type=number],
+  .ag-theme-quartz-dark input[class^=ag-][type=tel],
+  .ag-theme-quartz-dark input[class^=ag-][type=date],
+  .ag-theme-quartz-dark input[class^=ag-][type=datetime-local],
+  .ag-theme-quartz-dark textarea[class^=ag-],
+  .ag-theme-quartz-auto-dark input[class^=ag-]:not([type]),
+  .ag-theme-quartz-auto-dark input[class^=ag-][type=text],
+  .ag-theme-quartz-auto-dark input[class^=ag-][type=number],
+  .ag-theme-quartz-auto-dark input[class^=ag-][type=tel],
+  .ag-theme-quartz-auto-dark input[class^=ag-][type=date],
+  .ag-theme-quartz-auto-dark input[class^=ag-][type=datetime-local],
+  .ag-theme-quartz-auto-dark textarea[class^=ag-] {
+    min-height: calc(var(--ag-grid-size)* 2.5);
+    border-radius: var(--ag-border-radius);
+  }
+  .ag-theme-quartz {
+    flex: 1;
+    .ag-row-even .ag-row .ag-row-level-0 .ag-row-position-absolute .ag-row-not-inline-editing .ag-row-focus .ag-row-selected {
+      background-color: #b2ffa0;
+    }
+    .ag-row-odd .ag-row .ag-row-level-0 .ag-row-position-absolute .ag-row-not-inline-editing .ag-row-selected .ag-row-no-focus {
+      background-color: #b2ffa0;
+    }
+    .ag-header-cell {
+      /* background-image: linear-gradient(0deg, rgba(77, 175, 252,1), rgba(159, 212, 254,1)); */
+      background-color: transparent;
+      /* rgb(230, 236, 241); */
+      color: rgb(5, 84, 162);
+      /* White text */
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.6rem;
+      border-right: 1px solid #cccccc !important;
+      /* Light gray border */
+      padding-left: 2px;
+      padding-right: 2px;
+      .ag-input-field-input,
+      .ag-text-field-input {
+        background-color: transparent
+          /* #f0f7ec */
+        ;
+        padding: 0;
+      }
+    }
+    .ag-row {
+      background-color: rgba(187, 247, 147, 0) ;
+      /* Set your desired background color */
+    }
+    .ag-row-selected {
+      background-color: #bff38f !important;
+      /* Set your desired background color */
+    }
+    
+    .ag-root-wrapper {
+      background-color: rgb(255, 255, 255)
+        /* #b2ffa0 */
+      ;
+    }
+    .ag-header-container {
+      background-color: rgba(255, 255, 255, 0);
+    }
+    /* Add border to the right of each data cell */
+    .ag-cell {
+      border-right: 1px solid #c2cdf3 !important;
+      padding: 0;
+      /* Light gray border */
+    }
+    /* Remove the right border for the last column */
+    .ag-header-cell:last-child,
+    .ag-cell:last-child {
+      border-right: none;
+    }
+    .ag-floating-filter-input {
+      height: 22px;
+      /* Set your desired height */
+      line-height: 40px;
+      /* Set the line height to match for proper text alignment */
+      padding: 1;
+    }
+  }
+  .bottombar {
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #b2ffa0;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.8rem;
+  }
+
+  .pivottable1 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: absolute;
+    top: 1vh;
+    left: 1%;
+    width: 95%;
+    height: 85vh;
+    overflow: scroll;
+    padding: 10px;
+    border-radius: 5px;
+    background-image: linear-gradient(0deg, #afd3d1, #86cfff);
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.27);
+    box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.27);
+    z-index: 100;
+    * {
+      font-size: 0.7rem;
+    }
+
+  }
+}
