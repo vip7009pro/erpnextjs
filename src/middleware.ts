@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       const { payload } = await jwtVerify(token, secret);
-      console.log('Token valid for /, payload:', payload, 'Redirecting to /dashboard');
+      //console.log('Token valid for /, payload:', payload, 'Redirecting to /dashboard');
       return NextResponse.redirect(new URL('/dashboard', req.url));
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -27,7 +27,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }
-
   else if (pathname === '/dashboard' || pathname.startsWith('/dashboard/')) {
     if (!token) {
       console.log('No token for /dashboard, redirecting to /login');
@@ -37,7 +36,7 @@ export async function middleware(req: NextRequest) {
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
       const { payload } = await jwtVerify(token, secret);
-      console.log('Token valid for /dashboard, payload:', payload, 'Proceeding');
+      //console.log('Token valid for /dashboard, payload:', payload, 'Proceeding');
       return NextResponse.next();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -45,7 +44,6 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }
-
   else if(pathname === '/login'){
     if(token){
       console.log('Token exists for /login, redirecting to /dashboard');

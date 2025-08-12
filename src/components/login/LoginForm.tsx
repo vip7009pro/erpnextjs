@@ -5,21 +5,25 @@ import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 import Cookies from "universal-cookie";
 import { login } from '@/services/Api';
-
+import { useDispatch } from 'react-redux';
+import { changeUserData } from '@/store/tabSlice';
 const cookies = new Cookies();
 export default function Login() {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleSubmit = async () => {
-    const result = await login(user, pass);
+    const result = await login(user, pass);   
     if (result.data.tk_status.toUpperCase() === 'OK') {
       Swal.fire('Thông báo', 'Chúc mừng bạn, đăng nhập thành công !', 'success');
       // Lưu token vào cookie ở client-side
       cookies.set('token', result.data.token_content, { path: '/', expires: new Date(Date.now() + 86400000) }); // Hết hạn sau 1 ngày
       localStorage.setItem('publicKey', result.data.publicKey);
       router.push('/dashboard');
+      console.log(result.data.userData[0]);
+      dispatch(changeUserData(result.data.userData[0]));
     } else {
       Swal.fire('Thông báo', 'Lỗi: ' + result.data.message, 'error');
     }

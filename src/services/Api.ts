@@ -2,8 +2,9 @@ import axios from 'axios';
 import { encryptData } from './GlobalFunction';
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
+axios.defaults.withCredentials = true;
+const API_URL = 'http://cmsvina4285.com:3007/api';
 export async function login(user: string, pass: string) {
-  const API_URL = 'http://cmsvina4285.com:5013/api';
   const response = await axios.post(API_URL, {
     command: 'login',
     user,
@@ -20,12 +21,11 @@ export async function login(user: string, pass: string) {
 }
 
 export async function checkLogin(publicKey: string) {
-  console.log('vao check login')
-  const API_URL = 'http://cmsvina4285.com:5013/api';
-  const token = cookies.get('token')?.value;
+  const token = cookies.get('token');
   const datacheck = {
     CTR_CD: '002',
     token_string: token,
+    COMPANY: 'CMS',
   };
   const encryptedData = await encryptData(publicKey, datacheck);
   const response = await axios.post(API_URL, {
@@ -41,7 +41,7 @@ export async function logout() {
 }
 
 export async function generalQuery(command: string, queryData: any) {
-  const CURRENT_API_URL = 'http://cmsvina4285.com:5013/api';
+  const CURRENT_API_URL = API_URL;
   // console.log('API URL', CURRENT_API_URL);
   const publicKey = localStorage.getItem("publicKey");
   
@@ -76,6 +76,6 @@ export async function uploadQuery(
   //console.log("filenamelist", filenamelist);
   //console.log("formData", formData);
   //console.log("token", cookies.get("token"));
-  const data = await axios.post('http://cmsvina4285.com:5013/api', formData);
+  const data = await axios.post(API_URL, formData);
   return data;
 }
