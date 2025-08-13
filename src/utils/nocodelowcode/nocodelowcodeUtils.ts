@@ -8,7 +8,7 @@ export const f_loadFormList = async () => {
   await generalQuery("loadFormList", {})
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: Form[] = response.data.data.map(
+        const loaded_data: Form[] = response.data.data.map(
           (element: Form, index: number) => {
             return {
               ...element,
@@ -54,7 +54,7 @@ export const f_loadFormDetail = async (DATA: any) => {
   await generalQuery("loadFormDetail", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: Form[] = response.data.data.map(
+        const loaded_data: Form[] = response.data.data.map(
           (element: Form, index: number) => {
             return {
               ...element,
@@ -87,7 +87,7 @@ export const f_loadFieldList = async (DATA: any) => {
   await generalQuery("loadFieldList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: Field[] = response.data.data.map(
+        const loaded_data: Field[] = response.data.data.map(
           (element: Field, index: number) => {
             return {
               ...element,
@@ -156,7 +156,7 @@ export const f_loadPageList = async (DATA: any) => {
   await generalQuery("loadPageList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: Page[] = response.data.data.map(
+        const loaded_data: Page[] = response.data.data.map(
           (element: Page, index: number) => {
             return {
               ...element,
@@ -216,7 +216,7 @@ export const f_loadComponents = async (DATA: any) => {
   await generalQuery("loadPageComponentList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: PageComponent[] = response.data.data.map(
+        const loaded_data: PageComponent[] = response.data.data.map(
           (element: PageComponent, index: number) => {
             return {
               ...element,
@@ -276,7 +276,7 @@ export const f_loadComponentAttributes = async (DATA: any) => {
   await generalQuery("loadComponentAttributeList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: ComponentAttribute[] = response.data.data.map(
+        const loaded_data: ComponentAttribute[] = response.data.data.map(
           (element: ComponentAttribute, index: number) => {
             return {
               ...element,
@@ -377,7 +377,7 @@ export const f_loadRecordList = async (DATA: any) => {
   await generalQuery("loadRecordList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: Record[] = response.data.data.map(
+        const loaded_data: Record[] = response.data.data.map(
           (element: Record, index: number) => {
             return {
               ...element,
@@ -399,7 +399,7 @@ export const f_loadFormDataList = async (DATA: any) => {
   await generalQuery("loadFormDataList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: FormData[] = response.data.data.map(
+        const loaded_data: FormData[] = response.data.data.map(
           (element: FormData, index: number) => {
             return {
               ...element,
@@ -461,7 +461,7 @@ export const f_loadRelationshipList = async () => {
   await generalQuery("loadRelationshipList", {})
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map((element: any, index: number) => ({ ...element, id: index }));
+        const loaded_data: any[] = response.data.data.map((element: any, index: number) => ({ ...element, id: index }));
         kq = loaded_data;
       }
     })
@@ -512,7 +512,7 @@ export const f_load_pivotedData = async (DATA: any) => {
   await generalQuery("load_pivotedData", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -532,7 +532,7 @@ export const load_pivotedDataSpecificFields = async (DATA: any) => {
   await generalQuery("load_pivotedDataSpecificFields", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -553,7 +553,7 @@ export const f_loadTwoTableRelationship = async (DATA: any) => {
   await generalQuery("loadTwoTableRelationship", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -574,7 +574,7 @@ export const f_loadViewData = async (DATA: any) => {
   await generalQuery("loadViewData", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -595,7 +595,7 @@ export const f_loadViewDataSpecificFields = async (DATA: any) => {
   await generalQuery("loadViewDataSpecificFields", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -616,7 +616,7 @@ export const f_loadViewList = async (DATA: any) => {
   await generalQuery("loadViewList", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -637,7 +637,7 @@ export const f_getFormIDFromViewName = async (DATA: any) => {
   await generalQuery("getFormIDFromViewName", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -660,7 +660,7 @@ export const f_getViewNameFromFormID = async (DATA: any) => {
   await generalQuery("getViewNameFromFormID", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,

@@ -54,7 +54,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
       const selectedrows = gridRefDefault.current!.api.getSelectedRows().length;
       setSelectedrow(selectedrows);
     }
-  }, []);
+  }, [gridRef]);
   /*   function setIdText(id: string, value: string | number | undefined) {
       document.getElementById(id)!.textContent =
         value == undefined ? "undefined" : value + "";
@@ -68,7 +68,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
       gridRefDefault.current!.api.setGridOption("headerHeight", value);
       //setIdText("headerHeight", value);
     }
-  }, []);
+  }, [gridRef]);
   const defaultColDef = useMemo(() => {
     return {
       initialWidth: ag_data.columnWidth ?? 100,
@@ -79,10 +79,10 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
       filter: true,
       headerCheckboxSelectionFilteredOnly: true,
     };
-  }, []);
+  }, [ag_data.columnWidth, ag_data.showFilter]);
   const defaultColumns = useMemo(() => {
     if(ag_data.data.length > 0){
-      let keys = Object.keys(ag_data.data[0]);    
+      const keys = Object.keys(ag_data.data[0]);    
       return keys.map((key) => {        
         return {field: key,
           headerName: key,
@@ -90,14 +90,14 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
       })
     }  
     else return []  
-  },[ag_data.data])
+  },[ag_data.columnWidth, ag_data.data])
 
 
  
 
   const pivotDatasourcefiels = useMemo(() => {
     if(ag_data.data.length > 0){
-      let keys = Object.keys(ag_data.data[0]);    
+      const keys = Object.keys(ag_data.data[0]);    
       return keys.map((key) => {        
         return {
           caption: key,
@@ -121,7 +121,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
   },[ag_data.data])
 
 
- let pvdts =  new PivotGridDataSource({
+ const pvdts =  new PivotGridDataSource({
     fields: pivotDatasourcefiels,
     store: ag_data.data,
   })
@@ -188,13 +188,17 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
           onClick={() => {
             //onExportClick();
             //onExportExcelClick();
-            let kq = gridRef ? getFilteredDisplayedRows(gridRef?.current?.api!) : getFilteredDisplayedRows(gridRefDefault?.current?.api!);
+            const kq = gridRef && gridRef.current && gridRef.current.api
+              ? getFilteredDisplayedRows(gridRef.current.api as GridApi<RowData>)
+              : gridRefDefault && gridRefDefault.current && gridRefDefault.current.api
+                ? getFilteredDisplayedRows(gridRefDefault.current.api as GridApi<RowData>)
+                : getFilteredDisplayedRows(null);
             //console.log(kq);
             SaveExcel(kq, "Data Table");
           }}
         >
           <AiFillFileExcel color="green" size={15} />
-        EX1
+          <span style={{ fontSize: '0.7rem' }}>EX1</span>
         </IconButton>
         <IconButton
           className="buttonIcon"
@@ -203,7 +207,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
           }}
         >
           <AiFillFileExcel color="green" size={15} />
-          EX2
+          <span style={{ fontSize: '0.7rem' }}>EX2</span>
         </IconButton>
         <IconButton
           className="buttonIcon"
@@ -212,7 +216,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
           }}
         >
           <MdOutlinePivotTableChart color="#ff33bb" size={15} />
-          PIVOT
+          <span style={{ fontSize: '0.7rem' }}>PIVOT</span>
         </IconButton>
       </div>}
       <div className="ag-theme-quartz">
@@ -285,4 +289,5 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
     </div>
   )
 });
+AGTable.displayName = "AGTable";
 export default AGTable

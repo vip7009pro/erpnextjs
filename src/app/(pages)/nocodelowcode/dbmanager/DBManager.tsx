@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
@@ -215,7 +216,7 @@ const DBManager: React.FC = () => {
         .then((response) => {
           if (response.data.tk_status !== "NG") {
             if (response.data.data.length > 0) {
-              let loaded_data = response.data.data.map(
+              const loaded_data = response.data.data.map(
                 (item: any, index: number) => {
                   return {
                     id: index,
@@ -245,7 +246,7 @@ const DBManager: React.FC = () => {
         .then((response) => {
           if (response.data.tk_status !== "NG") {
             if (response.data.data.length > 0) {
-              let fields = response.data.data.map(
+              const fields = response.data.data.map(
                 (item: any, index: number) => {
                   return {
                     id: index,
@@ -633,7 +634,7 @@ const handleInsertData2= async (data: any[], fields: Field[]) => {
 const handleInsertMultipleData = async  (data: any[]) => {
   let totalkq: string = "";
   for(let i=0; i<data.length; i++){
-    let kq = await handleInsertData2(data[i], fields);
+    const kq = await handleInsertData2(data[i], fields);
     if(kq !== ''){
       totalkq += kq;
     }
@@ -668,7 +669,7 @@ const handleLoadData = async (table_name: string) => {
     .then(async (response) => {
       if (response.data.tk_status !== "NG") {
         if(response.data.data.length > 0){
-          let loaded_data: any[] = response.data.data.map(
+          const loaded_data: any[] = response.data.data.map(
             (element: any, index: number) => {
               return {
                 ...element,
@@ -680,10 +681,10 @@ const handleLoadData = async (table_name: string) => {
         }
        
       } else {
-        let temp_fields = await generalQuery("loadColumnList", {
+        const temp_fields = await generalQuery("loadColumnList", {
           TABLE_NAME: table_name,
         })        
-        let loaded_data: any = {};
+        const loaded_data: any = {};
         temp_fields.data.data.forEach((field: any) => {
           loaded_data[field.COLUMN_NAME] = "";
         });
@@ -701,10 +702,10 @@ const handleLoadData = async (table_name: string) => {
   }
 };
 const handleAddBlankDataToDataTable = async () => {
-  let temp_fields = await generalQuery("loadColumnList", {
+  const temp_fields = await generalQuery("loadColumnList", {
     TABLE_NAME: selectedTable,
   })
-  let loaded_data: any = {};
+  const loaded_data: any = {};
   temp_fields.data.data.forEach((field: any) => {
     loaded_data[field.COLUMN_NAME] = "";
   });
@@ -715,10 +716,10 @@ const deleteData = async (id: number) => {
   setData(data.filter((item) => item.id !== id));
 }
 const clearAllData = async () => {
-  let temp_fields = await generalQuery("loadColumnList", {
+  const temp_fields = await generalQuery("loadColumnList", {
     TABLE_NAME: selectedTable,
   })
-  let loaded_data: any = {};
+  const loaded_data: any = {};
   temp_fields.data.data.forEach((field: any) => {
     loaded_data[field.COLUMN_NAME] = "";
   });
@@ -807,12 +808,12 @@ const clearAllData = async () => {
   ];
   // Toolbar cho danh sách bảng
   const tableToolbar = (
-    <Box>
+    <div className="flex">
       <Button
         size="small"
         startIcon={<Refresh style={{ fontSize: 15 }} />}
         onClick={() => fetchTables()}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Load
       </Button>
@@ -820,7 +821,7 @@ const clearAllData = async () => {
         size="small"
         startIcon={<Add style={{ fontSize: 15 }} />}
         onClick={() => setOpenTableModal(true)}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Add
       </Button>
@@ -829,7 +830,7 @@ const clearAllData = async () => {
         startIcon={<Edit style={{ fontSize: 15 }} />}
         onClick={() => setEditTableName(selectedTable || "")}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Edit
       </Button>
@@ -838,11 +839,11 @@ const clearAllData = async () => {
         startIcon={<Delete style={{ fontSize: 15 }} />}
         onClick={handleDeleteTable}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Delete
       </Button>
-    </Box>
+    </div>
   );
   // Toolbar cho danh sách field
   const fieldToolbar = (
@@ -864,7 +865,7 @@ const clearAllData = async () => {
           });
         }}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Add
       </Button>
@@ -877,7 +878,7 @@ const clearAllData = async () => {
             setIsFieldEditting(true);
           }}
           disabled={!selectedTable}
-          style={{ fontSize: 13 }}
+          style={{ fontSize: '0.7rem' }}
         >
           Edit
         </Button>
@@ -889,18 +890,18 @@ const clearAllData = async () => {
           setEnableDeleteField((prev) => !prev);
         }}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Delete
       </Button>
-      <span style={{ fontSize: 14, fontWeight: 500, color: "#7465b4" }}>
+      <span style={{ fontSize: '0.7rem', fontWeight: 500, color: "#7465b4" }}>
         {enableDeleteField ? "(ENABLE DELETE)" : ""}
       </span>
       (
-      <span style={{ fontSize: 15, fontWeight: 500, color: "#d833ee" }}>
+      <span style={{ fontSize: '0.7rem', fontWeight: 500, color: "#d833ee" }}>
         {selectedTable}/
       </span>
-      <span style={{ fontSize: 15, fontWeight: 500, color: "#157bdb" }}>
+      <span style={{ fontSize: '0.7rem', fontWeight: 500, color: "#157bdb" }}>
         {editField?.name}
       </span>
       )
@@ -924,7 +925,7 @@ const clearAllData = async () => {
           
         }}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         INSERT DATA
       </Button>
@@ -937,7 +938,7 @@ const clearAllData = async () => {
         size="small"
         startIcon={<Refresh style={{ fontSize: 15 }} />}
         onClick={() => fetchTables()}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Load
       </Button>
@@ -948,7 +949,7 @@ const clearAllData = async () => {
           handleAddBlankDataToDataTable();
         }}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Add Blank Data
       </Button>
@@ -960,7 +961,7 @@ const clearAllData = async () => {
           deleteData(selectedData.id);
         }}
         disabled={!selectedData || data.length ===1}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Delete Data
       </Button>
@@ -973,7 +974,7 @@ const clearAllData = async () => {
           clearAllData();
         }}
         disabled={!selectedData || data.length ===1}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         Clear All Data
       </Button>
@@ -997,7 +998,7 @@ const clearAllData = async () => {
           
         }}
         disabled={!selectedTable}
-        style={{ fontSize: 13 }}
+        style={{ fontSize: '0.7rem' }}
       >
         INSERT DATA
       </Button>
@@ -1018,7 +1019,7 @@ const clearAllData = async () => {
         onSelectionChange={() => {}}      
       />
     );
-  }, [tables, selectedTable]);
+  }, [tables, tableColumns, tableToolbar]);
   const columnListAG = useMemo(() => {
     return (
       <AGTable
@@ -1028,7 +1029,7 @@ const clearAllData = async () => {
         toolbar={fieldToolbar}
         onSelectionChange={() => {}}
         onCellClick={(e) => {
-          let tempEditField: NewField = {
+          const tempEditField: NewField = {
             name: e.data.name,
             dataType: e.data.dataType,
             length: e.data.length,
@@ -1040,7 +1041,7 @@ const clearAllData = async () => {
           setEditField(tempEditField);
         }}
         onRowDoubleClick={(e) => {
-          let tempEditField: NewField = {
+          const tempEditField: NewField = {
             name: e.data.name,
             dataType: e.data.dataType,
             length: e.data.length,
@@ -1056,7 +1057,7 @@ const clearAllData = async () => {
         
       />
     );
-  }, [fields, enableDeleteField, editField]);
+  }, [fields, fieldColumns, fieldToolbar]);
   const dataTable = useMemo(() => {
     return (
       <AGTable
@@ -1071,21 +1072,21 @@ const clearAllData = async () => {
        
       />
     );
-  }, [data, selectedData, fields]);
+  }, [data, dataToolbar]);
   return (
-    <Box display="flex" height="91vh" width="100%" className="DBManager">
+    <div className="flex md:flex-row sm:flex-col w-full h-[calc(100vh-30px)]">
       {/* Danh sách bảng (bên trái) */}
-      <Box width="25%" p={0}>
+      <div className="w-1/4">
         {tableListAG}
-      </Box>
+      </div>
       {/* Danh sách field (bên phải) */}
-      <Box width="75%" p={0}>
+      <div className="w-1/2">
         {columnListAG}
-      </Box>
+      </div>
       {/* Danh sách dữ liệu (bên phải) */}
-      <Box width="75%" p={0}>
+      <div className="w-1/2">
         {dataTable}
-      </Box>
+      </div>
       {/* Modal để tạo/sửa bảng */}
       <Modal open={openTableModal} onClose={() => setOpenTableModal(false)}>
         <Box
@@ -1462,7 +1463,7 @@ const clearAllData = async () => {
           </Box>
         </Box>
       </Modal>
-    </Box>
+    </div>
   );
 };
 export default DBManager;
