@@ -1,3 +1,4 @@
+'use-client';
 import {
   forwardRef,
   ReactElement,
@@ -193,7 +194,7 @@ const AGTable = forwardRef((ag_data: AGInterface, gridRef: any) => {
           }}
         >
           <AiFillFileExcel color="green" size={15} />
-          EX1
+        EX1
         </IconButton>
         <IconButton
           className="buttonIcon"
