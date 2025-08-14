@@ -1,3 +1,5 @@
+'use client';
+import MenuManager from "./MenuManager";
 export default function MenuManagerPage() {
-  return <div>Menu Manager Page</div>;
+  return <MenuManager />;
 }

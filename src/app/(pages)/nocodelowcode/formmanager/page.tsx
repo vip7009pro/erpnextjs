@@ -1,3 +1,5 @@
+'use client';
+import FormManagerNL from "@/app/(pages)/nocodelowcode/formmanager/FormManager";
 export default function FormManagerPage() {
-  return <div>Form Manager Page</div>;
+  return <FormManagerNL />;
 }

@@ -1,3 +1,5 @@
+'use client';
+import RelationshipManager from "./RelationshipsManager";
 export default function RelationshipManagerPage() {
-  return <div>Relationship Manager Page</div>;
+  return <RelationshipManager />;
 }

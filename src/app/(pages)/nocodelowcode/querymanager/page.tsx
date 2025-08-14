@@ -1,3 +1,5 @@
+'use client';
+import QueryManager from "./QueryManager";
 export default function QueryManagerPage() {
-  return <div>Query Manager Page</div>;
+  return <QueryManager />;
 }

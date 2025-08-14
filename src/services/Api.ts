@@ -4,6 +4,10 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 axios.defaults.withCredentials = true;
 const API_URL = 'http://cmsvina4285.com:3007/api';
+
+export const getCtrCd = () => {  
+  return '002';
+}
 export async function login(user: string, pass: string) {
   const response = await axios.post(API_URL, {
     command: 'login',

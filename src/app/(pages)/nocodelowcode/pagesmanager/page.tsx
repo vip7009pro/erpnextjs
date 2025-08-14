@@ -1,3 +1,6 @@
+'use client';
+import PagesManager from "./PagesManager";
+
 export default function PagesManagerPage() {
-  return <div>Pages Manager Page</div>;
+  return <PagesManager />;
 }
