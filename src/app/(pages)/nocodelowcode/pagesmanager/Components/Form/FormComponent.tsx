@@ -70,15 +70,15 @@ const FormComponent: React.FC<FormComponentProps> = ({ formId }) => {
   };
   const [optionsMap, setOptionsMap] = useState<any>({});
   const loadOptions = async (fields: Field[]) => {
-    let refFields = fields.filter((field: Field) => (field.ReferenceFieldIDs !== null || field.ReferenceFieldIDs !== '') && field.ReferenceFormID !== null);
+    const refFields = fields.filter((field: Field) => (field.ReferenceFieldIDs !== null || field.ReferenceFieldIDs !== '') && field.ReferenceFormID !== null);
     for (let i = 0; i < refFields.length; i++) {
-      let refField = refFields[i];
-      let refViewName = await f_getViewNameFromFormID({ FormID: Number(refField.ReferenceFormID) });
+      const refField = refFields[i];
+      const refViewName = await f_getViewNameFromFormID({ FormID: Number(refField.ReferenceFormID) });
       //console.log('refViewName',refViewName)
       //console.log('refFieldData',refFieldData)
       const orgFieldList = await f_loadFieldList({ FormID: Number(refField.ReferenceFormID) });
-      let showFieldList = orgFieldList.filter((field: any) => refField.ReferenceFieldIDs?.split(',').includes(String(field.FieldID)));
-      let refFieldData = await f_loadViewDataSpecificFields({ ViewName: refViewName, Fields: showFieldList.map((field: any) => field.FieldName).join(',') });
+      const showFieldList = orgFieldList.filter((field: any) => refField.ReferenceFieldIDs?.split(',').includes(String(field.FieldID)));
+      const refFieldData = await f_loadViewDataSpecificFields({ ViewName: refViewName, Fields: showFieldList.map((field: any) => field.FieldName).join(',') });
       //console.log('refFieldData',refFieldData)
       //console.log('showFieldList',showFieldList)
       // get refFieldData with fieldID in refField.ReferenceFieldIDs
@@ -165,14 +165,14 @@ const FormComponent: React.FC<FormComponentProps> = ({ formId }) => {
                         }}
                         options={optionsMap[field.FieldName]}
                         getOptionLabel={(option) => {
-                          let opt = Object.entries(option)
+                          const opt = Object.entries(option)
                             .filter(([key]) => !['id', 'RecordID', 'CreatedAt'].includes(key))
                             .map(([key, value]) => String(value))
                             .join('.');
                           return opt;
                         }}
                         renderOption={(props, option: any) => {
-                          let opt = Object.entries(option)
+                          const opt = Object.entries(option)
                             .filter(([key]) => !['id', 'RecordID', 'CreatedAt'].includes(key))
                             .map(([key, value]) => String(value))
                             .join('.');

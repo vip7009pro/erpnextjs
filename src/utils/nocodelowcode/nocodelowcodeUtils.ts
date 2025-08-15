@@ -684,7 +684,7 @@ export const f_runQuery = async (DATA: any) => {
   await generalQuery("runQuery", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -705,7 +705,7 @@ export const f_getQueryFilterByQueryName = async (DATA: any) => {
   await generalQuery("getQueryFilterByQueryName", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: QueryFilter[] = response.data.data.map(
+        const loaded_data: QueryFilter[] = response.data.data.map(
           (element: QueryFilter, index: number) => {
             return {
               ...element,
@@ -726,7 +726,7 @@ export const f_getQueryFilterList = async (DATA: any) => {
   await generalQuery("getQueryFilter", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: QueryFilter[] = response.data.data.map(
+        const loaded_data: QueryFilter[] = response.data.data.map(
           (element: QueryFilter, index: number) => {
             return {
               ...element,
@@ -746,7 +746,7 @@ export const f_getQueryIDFromQueryName = async (DATA: any) => {
   await generalQuery("getQueryIDFromQueryName", DATA)
     .then((response) => {
       if (response.data.tk_status !== "NG") {
-        let loaded_data: any[] = response.data.data.map(
+        const loaded_data: any[] = response.data.data.map(
           (element: any, index: number) => {
             return {
               ...element,
@@ -769,7 +769,7 @@ export const f_loadPageListFromGroupName = async (DATA: any) => {
     await generalQuery("loadPageListFromGroupName", DATA)
       .then((response) => {
         if (response.data.tk_status !== "NG") {
-          let loaded_data: Page[] = response.data.data.map(
+          const loaded_data: Page[] = response.data.data.map(
             (element: Page, index: number) => {
               return {
                 ...element,
@@ -789,7 +789,7 @@ export const f_loadPageListFromGroupID = async (DATA: any) => {
     await generalQuery("loadPageListFromGroupID", DATA)
       .then((response) => {
         if (response.data.tk_status !== "NG") {
-          let loaded_data: Page[] = response.data.data.map(
+          const loaded_data: Page[] = response.data.data.map(
             (element: Page, index: number) => {
               return {
                 ...element,

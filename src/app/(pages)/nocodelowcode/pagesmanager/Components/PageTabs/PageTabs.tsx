@@ -9,7 +9,7 @@ export default function PageTabs({ PageGroupID }: { PageGroupID: number }) {
   const [pages, setPages] = useState<Page[]>([]);
 
   const loadPageList = async () => {
-    let result = await f_loadPageListFromGroupID({ PageGroupID: PageGroupID });
+    const result = await f_loadPageListFromGroupID({ PageGroupID: PageGroupID });
     setPages(result);
   };
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function PageTabs({ PageGroupID }: { PageGroupID: number }) {
     <div style={{ width: '100%' }}>
      {pages.length > 1 && <MyTabs defaultActiveTab={0}>
         {pages.map((page: Page) => (         
-            <MyTabs.Tab title={page.Description ?? 'Blank'}>
+            <MyTabs.Tab key={page.PageID} title={page.Description ?? 'Blank'}>
               <PageShow pageId={page.PageID} />
             </MyTabs.Tab>        
         ))}

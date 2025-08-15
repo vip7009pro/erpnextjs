@@ -31,7 +31,7 @@ export default function TableFromQueryComponent({queryName}: {queryName: string 
     //console.log(data);
     const queryID = await f_getQueryIDFromQueryName({ QueryName: queryName });
     const resultQueryFilter = await f_getQueryFilterList({ QueryID: queryID });  
-    let params: Record<string, any> = {};
+    const params: Record<string, any> = {};
     for(let i = 0; i < resultQueryFilter.length; i++) {
       params[resultQueryFilter[i].ParamName] = data[resultQueryFilter[i].ParamName];
     }

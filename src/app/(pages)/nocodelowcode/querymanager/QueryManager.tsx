@@ -73,7 +73,7 @@ const QueryManager: React.FC = () => {
       if (res?.data?.data) {
         setQueryList(res.data.data);
         if (res.data.data.length > 0) {
-          let loaded_data: Query[] = res.data.data.map(
+          const loaded_data: Query[] = res.data.data.map(
             (element: Query, index: number) => {
               return {
                 ...element,
@@ -107,7 +107,7 @@ const QueryManager: React.FC = () => {
       //console.log(queryId);
       const res = await generalQuery("getQueryFilter", { QueryID: queryId });
       if (res?.data?.data) {
-        let loaded_data: QueryFilter[] = res.data.data.map(
+        const loaded_data: QueryFilter[] = res.data.data.map(
           (element: QueryFilter, index: number) => {
             return {
               ...element,

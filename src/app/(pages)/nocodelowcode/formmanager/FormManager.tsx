@@ -201,9 +201,9 @@ const FormManager: React.FC = () => {
 
   return (
     <Box className='nocodelowcode' p={2}>
-      <Grid container spacing={1}>
+      <div className='grid grid-cols-1 gap-2'>
         {/* Left: Form List */}
-        <Grid item xs={12} md={5}>
+        <div className='col-span-1'>
           <Typography variant='h6'>Form Manager</Typography>
           <Box display='flex' gap={1} mb={2}>
             <TextField label='Form Name' name='FormName' value={formEdit.FormName} onChange={handleFormChange} size='small' />
@@ -255,9 +255,9 @@ const FormManager: React.FC = () => {
               </TableBody>
             </Table>
           </TableContainer>
-        </Grid>
+        </div>
         {/* Right: Fields for selected Form */}
-        <Grid item xs={12} md={7}>
+        <div className='col-span-1'>
           <Typography variant='h6'>Field Manager ({selectedForm?.FormName})</Typography>
           {selectedForm ? (
             <>
@@ -413,8 +413,8 @@ const FormManager: React.FC = () => {
               Chọn một Form để quản lý Field.
             </Typography>
           )}
-        </Grid>
-      </Grid>
+        </div>
+      </div>
       {/* Data Entry Dialog */}
       <Dialog open={showDataDialog} onClose={handleCloseDataDialog} maxWidth='lg' fullWidth>
         <DialogTitle>Nhập dữ liệu cho Form: {selectedForm?.FormName}</DialogTitle>

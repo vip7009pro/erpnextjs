@@ -85,8 +85,8 @@ const RelationshipsManager: React.FC = () => {
   const [selectedRelationship, setSelectedRelationship] = useState<Relationship | null>(null);
 
   const loadTwoTableRelationship = async (parentTableId: number, childTableId: number) => {
-    let twoTableRelationships = await f_loadTwoTableRelationship({ ParentTableID: parentTableId, ChildTableID: childTableId });
-    let tempPendingMappings = twoTableRelationships.map((item: any) => {
+    const twoTableRelationships = await f_loadTwoTableRelationship({ ParentTableID: parentTableId, ChildTableID: childTableId });
+    const tempPendingMappings = twoTableRelationships.map((item: any) => {
       return {
         parentFieldId: item.ParentFieldID,
         childFieldId: item.ChildFieldID,
@@ -217,15 +217,15 @@ const RelationshipsManager: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{ background: 'transparent' }} p={0}>
-      <Box sx={{ background: 'transparent' }} mb={2} height={'91vh'}>
+    <div className='bg-transparent p-0'>
+      <div className='bg-transparent mb-2 h-[91vh]'>
         {relationShipAGTable}
-      </Box>
+      </div>
       <Dialog open={open} onClose={() => setOpen(false)} maxWidth='md' fullWidth>
         <DialogTitle>Tạo Relationship mới</DialogTitle>
         <DialogContent>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
+          <div className='grid grid-cols-1 gap-2'>
+            <div className='col-span-1'>
               <FormControl fullWidth margin='normal'>
                 <InputLabel>Bảng chính</InputLabel>
                 <Select
@@ -243,9 +243,9 @@ const RelationshipsManager: React.FC = () => {
                   ))}
                 </Select>
               </FormControl>
-              <Box sx={{ background: 'transparent' }} mt={2}>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
+              <Box className='mt-2'>
+                <div className='grid grid-cols-1 gap-2'>
+                  <div className='col-span-1'>
                     <Typography variant='subtitle1'>Chọn trường bảng chính</Typography>
                     <FormControl fullWidth margin='normal'>
                       <InputLabel>Field bảng chính</InputLabel>
@@ -264,11 +264,11 @@ const RelationshipsManager: React.FC = () => {
                         ))}
                       </Select>
                     </FormControl>
-                  </Grid>
-                </Grid>
+                  </div>
+                </div>
               </Box>
-            </Grid>
-            <Grid item xs={6}>
+            </div>
+            <div className='col-span-1'>
               <FormControl fullWidth margin='normal'>
                 <InputLabel>Bảng ngoại</InputLabel>
                 <Select
@@ -286,9 +286,9 @@ const RelationshipsManager: React.FC = () => {
                   ))}
                 </Select>
               </FormControl>
-              <Box sx={{ background: 'transparent' }} mt={2}>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
+              <Box className='mt-2'>
+                <div className='grid grid-cols-1 gap-2'>
+                  <div className='col-span-1'>
                     <Typography variant='subtitle1'>Chọn trường bảng ngoại</Typography>
                     <FormControl fullWidth margin='normal'>
                       <InputLabel>Field bảng ngoại</InputLabel>
@@ -306,13 +306,13 @@ const RelationshipsManager: React.FC = () => {
                         ))}
                       </Select>
                     </FormControl>
-                  </Grid>
-                </Grid>
+                  </div>
+                </div>
               </Box>
-            </Grid>
+            </div>
             {/* Hiển thị bảng các quan hệ đã tạo giữa 2 bảng */}
 
-            <Grid item xs={12}>
+            <div className='col-span-1'>
               <FormControl fullWidth margin='normal'>
                 <InputLabel>Loại Relationship</InputLabel>
                 <Select value={relationshipType} onChange={(e) => setRelationshipType(e.target.value as string)} label='Loại Relationship'>
@@ -324,34 +324,34 @@ const RelationshipsManager: React.FC = () => {
                 </Select>
               </FormControl>
               {errorMessage && (
-                <Typography color='error' variant='body2' sx={{ mb: 1 }}>
+                <Typography color='error' variant='body2' className='mb-1'>
                   {errorMessage}
                 </Typography>
               )}
-              <Box sx={{ background: 'transparent' }} mt={2} textAlign='right'>
+              <Box className='mt-2 text-right'>
                 <Button variant='contained' color='primary' onClick={handleAddMapping} disabled={!selectedParentField || !selectedChildField}>
                   Add Mapping
                 </Button>
               </Box>
-            </Grid>
-            <Grid item xs={12}>
+            </div>
+            <div className='col-span-1'>
               {pendingMappings.length > 0 && (
-                <Box sx={{ background: 'transparent' }} mt={2}>
+                <Box className='mt-2'>
                   <Typography variant='subtitle2'>Các trường đã mapping:</Typography>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 8 }}>
+                  <table className='w-full border-collapse mt-2'>
                     <thead>
                       <tr>
-                        <th style={{ borderBottom: '1px solid #ccc', padding: 4 }}>Field bảng chính</th>
-                        <th style={{ borderBottom: '1px solid #ccc', padding: 4 }}>Field bảng ngoại</th>
-                        <th style={{ borderBottom: '1px solid #ccc', padding: 4 }}>Thao tác</th>
+                        <th className='border-b border-gray-300 p-4'>Field bảng chính</th>
+                        <th className='border-b border-gray-300 p-4'>Field bảng ngoại</th>
+                        <th className='border-b border-gray-300 p-4'>Thao tác</th>
                       </tr>
                     </thead>
                     <tbody>
                       {pendingMappings.map((m, idx) => (
                         <tr key={m.parentFieldId + '-' + m.childFieldId}>
-                          <td style={{ borderBottom: '1px solid #eee', padding: 4 }}>{m.parentFieldName}</td>
-                          <td style={{ borderBottom: '1px solid #eee', padding: 4 }}>{m.childFieldName}</td>
-                          <td style={{ borderBottom: '1px solid #eee', padding: 4 }}>
+                          <td className='border-b border-gray-300 p-4'>{m.parentFieldName}</td>
+                          <td className='border-b border-gray-300 p-4'>{m.childFieldName}</td>
+                          <td className='border-b border-gray-300 p-4'>
                             <Button size='small' color='secondary' onClick={() => handleRemoveMapping(m.parentFieldId, m.childFieldId)}>
                               Xóa
                             </Button>
@@ -362,8 +362,8 @@ const RelationshipsManager: React.FC = () => {
                   </table>
                 </Box>
               )}
-            </Grid>
-          </Grid>
+            </div>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button
@@ -382,7 +382,7 @@ const RelationshipsManager: React.FC = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </Box>
+    </div>
   );
 };
 

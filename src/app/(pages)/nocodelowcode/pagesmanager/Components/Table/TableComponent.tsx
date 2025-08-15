@@ -8,7 +8,7 @@ export default function TableComponent({formID}: {formID: string | number}) {
  
   const [records, setRecords] = useState<any[]>([]);
   const loadRecords = async () => {
-    let viewName = await f_getViewNameFromFormID({ FormID: Number(formID) });
+    const viewName = await f_getViewNameFromFormID({ FormID: Number(formID) });
     const result = await f_loadViewData({ ViewName: viewName });
     setRecords(result);
   } 
