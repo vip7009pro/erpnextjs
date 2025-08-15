@@ -11,6 +11,7 @@ import { DiMsqlServer } from 'react-icons/di';
 import { SiReactquery } from 'react-icons/si';
 import { TbCirclesRelation } from 'react-icons/tb';
 import { CgWebsite } from 'react-icons/cg';
+import { PiFlowArrowBold } from 'react-icons/pi';
 interface LayoutHomeProps {
   children: React.ReactNode;
 }
@@ -57,6 +58,7 @@ const menuItems = [
       { name: 'Form Manager', icon: <MdOutlineFormatAlignCenter color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/formmanager' },
       { name: 'Relationship Manager', icon: <TbCirclesRelation color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/relationshipmanager' },
       { name: 'Pages Manager', icon: <CgWebsite color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/pagesmanager' },     
+      { name: 'Workflow Manager', icon: <PiFlowArrowBold color={`#${Math.floor(Math.random()*16777215).toString(16)}`} />, path: '/nocodelowcode/workflowmanager' },     
     ],
   },
   {

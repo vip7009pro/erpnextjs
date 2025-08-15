@@ -1,0 +1,31 @@
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { WorkflowState, CustomNode } from '@/components/workflowmanager/workflowTypes';
+import { Edge } from 'reactflow';
+
+const initialState: WorkflowState = {
+  nodes: [],
+  edges: [],
+};
+
+const workflowSlice = createSlice({
+  name: 'workflow',
+  initialState,
+  reducers: {
+    setNodes: (state, action: PayloadAction<CustomNode[]>) => {
+      state.nodes = action.payload;
+    },
+    setEdges: (state, action: PayloadAction<Edge[]>) => {
+      state.edges = action.payload;
+    },
+    addNode: (state, action: PayloadAction<CustomNode>) => {
+      state.nodes.push(action.payload);
+    },
+    addEdge: (state, action: PayloadAction<Edge>) => {
+      state.edges.push(action.payload);
+    },
+    // Có thể thêm reducer để update, delete, v.v.
+  },
+});
+
+export const { setNodes, setEdges, addNode, addEdge } = workflowSlice.actions;
+export default workflowSlice.reducer;
