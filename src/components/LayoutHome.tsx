@@ -1,11 +1,11 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import LogoutButton from './logout/LogoutButton';
 import { IoMdMenu } from 'react-icons/io';
 import { MdWarehouse, MdSell, MdLock, MdNotifications, MdInput, MdOutput, MdFormatQuote, MdShoppingCart, MdPassword, MdSecurity, MdMenuBook, MdOutlineFormatAlignCenter } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaDatabase } from 'react-icons/fa';
 import { DiMsqlServer } from 'react-icons/di';
 import { SiReactquery } from 'react-icons/si';

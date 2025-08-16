@@ -23,9 +23,15 @@ const workflowSlice = createSlice({
     addEdge: (state, action: PayloadAction<Edge>) => {
       state.edges.push(action.payload);
     },
+    removeNode: (state, action: PayloadAction<string>) => {
+      state.nodes = state.nodes.filter((node) => node.id !== action.payload);
+    },
+    removeEdge: (state, action: PayloadAction<string>) => {
+      state.edges = state.edges.filter((edge) => edge.id !== action.payload);
+    },
     // Có thể thêm reducer để update, delete, v.v.
   },
 });
 
-export const { setNodes, setEdges, addNode, addEdge } = workflowSlice.actions;
+export const { setNodes, setEdges, addNode, addEdge, removeNode, removeEdge } = workflowSlice.actions;
 export default workflowSlice.reducer;

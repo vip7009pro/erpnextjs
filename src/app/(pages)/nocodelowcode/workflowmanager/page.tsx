@@ -1,6 +1,4 @@
 "use client";
-
-
 import WorkflowEditor from "@/components/workflowmanager/WorkflowEditor";
 import { ReactFlowProvider } from "reactflow";
 
